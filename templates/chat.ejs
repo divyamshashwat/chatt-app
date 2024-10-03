@@ -1,0 +1,63 @@
+<!-- templates/chat.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div id="chat-container">
+        <h2 style="position: absolute; top: 10px; left: 10px;">Chat Room: <%= topic %></h2>
+        <div id="chat-box"></div>
+        <div id="chat-form">
+            <input type="text" id="message" placeholder="Type a message..." required>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <!-- Include Socket.IO client library -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        const socket = io();
+
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message');
+        const sendButton = document.getElementById('send-button');
+        const username = "<%= username %>";
+        const topic = "<%= topic %>";
+
+        socket.on('connect', function() {
+            console.log("Connected to the server!");
+            socket.emit('join', { username: username, room: topic });
+        });
+
+        socket.on('message', function(data) {
+            const newMessage = document.createElement('div');
+            if (data.username && data.msg) {
+                newMessage.innerHTML = `<strong>${data.username}:</strong> ${data.msg}`;
+            } else {
+                newMessage.innerHTML = `<strong>System:</strong> ${data.msg}`;
+            }
+            chatBox.appendChild(newMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message !== '') {
+                socket.emit('message', { username: username, topic: topic, msg: message });
+                messageInput.value = '';
+            }
+        }
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

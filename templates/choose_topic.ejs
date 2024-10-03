@@ -1,0 +1,33 @@
+<!-- templates/choose_topic.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Choose Topic</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, <%= username %>!</h2>
+
+        <h3>Choose a Topic or Create One</h3>
+        <form action="/create-topic" method="POST">
+            <input type="hidden" name="username" value="<%= username %>">
+            <label for="topic">New Topic:</label>
+            <input type="text" id="topic" name="topic" required>
+            <button type="submit">Create Topic</button>
+        </form>
+
+        <h4>Available Topics:</h4>
+        <ul>
+            <% topics.forEach(function(topic){ %>
+                <li>
+                    <form action="/chat/<%= encodeURIComponent(topic) %>/<%= encodeURIComponent(username) %>" method="GET">
+                        <button type="submit" name="topic" value="<%= topic %>"><%= topic %></button>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>

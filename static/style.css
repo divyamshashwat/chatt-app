@@ -1,0 +1,113 @@
+body {
+    font-family: 'Courier New', Courier, monospace; /* Changed to cmd font */
+    background: black; /* Changed background to black for matrix effect */
+    color: #00ff00; /* Changed text color to green for matrix effect */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center items vertically */
+    height: 100vh; /* Full height for vertical centering */
+    overflow: hidden; /* Prevent scrolling */
+    touch-action: manipulation; /* Prevent zooming on touch devices */
+}
+
+.container {
+    width: 100%; /* Full width for dynamic fitting */
+    max-width: 800px; /* Set a maximum width for larger screens */
+    margin: 0; /* Remove margin to center the container */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2); /* Green shadow for matrix effect */
+}
+
+h1 {
+    text-align: center;
+    color: #00ff00; /* Green color for matrix effect */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center; /* Center form elements */
+}
+
+.label-container {
+    display: flex;
+    align-items: center; /* Align label and input vertically */
+}
+
+label {
+    margin-right: 10px; /* Space between label and input */
+    font-weight: bold;
+    color: #00ff00; /* Green color for matrix effect */
+}
+
+input {
+    padding: 8px; /* Reduced padding for smaller input */
+    border: 1px solid #00ff00; /* Green border for matrix effect */
+    border-radius: 6px;
+    margin-bottom: 0; /* Remove margin to align with button */
+    transition: border-color 0.3s;
+    background-color: transparent; /* Set background to transparent */
+    color: #00ff00; /* Green text for input */
+    width: 100%; /* Full width for input */
+    max-width: 200px; /* Set a maximum width for input */
+    caret-color: #00ff00; /* Blinking cursor color */
+    font-family: 'Courier New', Courier, monospace; /* Ensure input uses cmd font */
+    -webkit-text-fill-color: #00ff00; /* Change to green to make text visible */
+    background-color: rgba(0, 0, 0, 0); /* Ensure no white background on input */
+}
+
+input:focus {
+    border-color: #00ff00; /* Green focus border */
+    outline: none;
+    background-color: rgba(0, 0, 0, 0); /* Keep background transparent on focus */
+}
+
+button {
+    padding: 10px 20px; /* Added padding for dynamic button size */
+    background-color: #00ff00; /* Green button for matrix effect */
+    color: black; /* Black text for button */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace; /* Ensure button uses cmd font */
+    transition: background-color 0.3s, transform 0.2s;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+button:hover {
+    background-color: #00cc00; /* Darker green on hover */
+    transform: scale(1.05);
+}
+
+#chat-box {
+    height: 400px; /* Increased height for chat box */
+    overflow-y: auto;  /* Allow scrolling */
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark background for chat box */
+    color: #00ff00; /* Green text for messages */
+    display: flex;
+    flex-direction: column; /* Allow stacking of messages and input */
+}
+
+#chat-form {
+    display: flex; /* Flexbox for input and button */
+    position: relative; /* Positioning to place at the bottom */
+    margin-top: 15px; /* Space from the chat box */
+}
+
+#chat-form input {
+    width: 100%; /* Full width for input */
+    max-width: 200px; /* Set a maximum width for input */
+    margin-right: 10px; /* Space between input and button */
+}
+
+#chat-form button {
+    padding: 10px 20px; /* Added padding for dynamic button size */
+}
